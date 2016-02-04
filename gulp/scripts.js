@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var browserSync = require('browser-sync');
+var ngClassify = require('gulp-ng-classify');
 
 var $ = require('gulp-load-plugins')();
 
@@ -20,6 +21,7 @@ gulp.task('scripts', function() {
 
 function buildScripts() {
   return gulp.src(path.join(conf.paths.src, '/app/**/*.coffee'))
+    .pipe(ngClassify())
     .pipe($.sourcemaps.init())
     .pipe($.coffeelint())
     .pipe($.coffeelint.reporter())

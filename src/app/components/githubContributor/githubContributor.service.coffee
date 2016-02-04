@@ -1,4 +1,4 @@
-angular.module 'historyWeb'
+angular.module 'app'
   .factory 'githubContributor', ($log, $http) ->
     'ngInject'
     apiHost = 'https://api.github.com/repos/Swiip/generator-gulp-angular'

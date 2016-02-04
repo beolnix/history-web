@@ -1,4 +1,4 @@
-angular.module 'historyWeb'
+angular.module 'app'
   .service 'webDevTec', () ->
     'ngInject'
     data = [

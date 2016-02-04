@@ -1,5 +1,5 @@
 describe 'service webDevTec', () ->
-  beforeEach module 'historyWeb'
+  beforeEach module 'app'
 
   it 'should be registered', inject (webDevTec) ->
     expect(webDevTec).not.toEqual null

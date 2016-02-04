@@ -1,4 +1,4 @@
-angular.module 'historyWeb'
+angular.module 'app'
   .controller 'MainController', ($timeout, webDevTec, toastr) ->
     'ngInject'
     vm = this

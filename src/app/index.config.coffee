@@ -1,4 +1,4 @@
-angular.module 'historyWeb'
+angular.module 'app'
   .config ($logProvider, toastrConfig) ->
     'ngInject'
     # Enable log

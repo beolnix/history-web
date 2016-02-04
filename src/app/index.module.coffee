@@ -1,1 +1,1 @@
-angular.module 'historyWeb', ['ngResource', 'ui.router', 'ui.bootstrap', 'toastr']
+angular.module 'app', ['ngResource', 'ui.router', 'ui.bootstrap', 'toastr']

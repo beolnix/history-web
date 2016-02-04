@@ -1,7 +1,7 @@
 describe 'controllers', () ->
   vm = undefined
 
-  beforeEach module 'historyWeb'
+  beforeEach module 'app'
 
   beforeEach inject ($controller, webDevTec, toastr) ->
     spyOn(webDevTec, 'getTec').and.returnValue [{}, {}, {}, {}, {}]

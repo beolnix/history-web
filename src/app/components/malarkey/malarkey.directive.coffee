@@ -1,4 +1,4 @@
-angular.module 'historyWeb'
+angular.module 'app'
   .directive 'acmeMalarkey', ->
 
     MalarkeyController = ($log, githubContributor) ->
