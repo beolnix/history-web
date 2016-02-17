@@ -1,5 +1,6 @@
 class Main extends Controller
   constructor: ($timeout, webDevTecService, toastr) ->
+    @toastr = toastr
     @awesomeThings = []
     @classAnimation = ''
     @creationDate = 1454622044688
@@ -11,13 +12,13 @@ class Main extends Controller
   activate: () =>
     @getWebDevTec()
     @timeout (->
-      classAnimation = 'rubberBand'
+      @classAnimation = 'rubberBand'
       return
     ), 4000
     return
 
   showToastr: () =>
-    toastr.info 'Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>'
+    @toastr.info 'Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>'
     @classAnimation = ''
     return
 
