@@ -1,30 +1,31 @@
-angular.module 'app'
-  .controller 'MainController', ($timeout, webDevTec, toastr) ->
-    'ngInject'
-    vm = this
-    activate = ->
-      getWebDevTec()
-      $timeout (->
-        vm.classAnimation = 'rubberBand'
-        return
-      ), 4000
-      return
-
-    showToastr = ->
-      toastr.info 'Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>'
-      vm.classAnimation = ''
-      return
-
-    getWebDevTec = ->
-      vm.awesomeThings = webDevTec.getTec()
-      angular.forEach vm.awesomeThings, (awesomeThing) ->
-        awesomeThing.rank = Math.random()
-        return
-      return
-
-    vm.awesomeThings = []
-    vm.classAnimation = ''
-    vm.creationDate = 1454622044688
-    vm.showToastr = showToastr
-    activate()
+class Main extends Controller
+  constructor: ($timeout, webDevTecService, toastr) ->
+    @awesomeThings = []
+    @classAnimation = ''
+    @creationDate = 1454622044688
+    @webService = webDevTecService
+    @timeout = $timeout
+    @activate()
     return
+
+  activate: () =>
+    @getWebDevTec()
+    @timeout (->
+      classAnimation = 'rubberBand'
+      return
+    ), 4000
+    return
+
+  showToastr: () =>
+    toastr.info 'Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>'
+    @classAnimation = ''
+    return
+
+  getWebDevTec: () =>
+    @awesomeThings = @webService.getTec()
+    angular.forEach @awesomeThings, (awesomeThing) ->
+      awesomeThing.rank = Math.random()
+      return
+    return
+
+

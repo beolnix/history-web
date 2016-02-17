@@ -1,12 +1,13 @@
-class Routes extends Config
+class States extends Config
   constructor: ($stateProvider, $urlRouterProvider) ->
-    'ngInject'
-    $stateProvider
-    .state 'home',
-      url: '/'
-      templateUrl: 'app/main/main.html'
-      controller: 'MainController'
-      controllerAs: 'main'
-
     $urlRouterProvider.otherwise '/'
+
+    $stateProvider
+      .state 'home',
+        url: '/'
+        templateUrl: 'app/main/main.html'
+        controller: 'mainController'
+        controllerAs: 'main'
+
+
 

@@ -1,4 +1,3 @@
-angular.module 'app'
-  .run ($log) ->
-    'ngInject'
+class Index extends Run
+  constructor: ($log) ->
     $log.debug 'runBlock end'

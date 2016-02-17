@@ -1,7 +1,6 @@
-angular.module 'app'
-  .service 'webDevTec', () ->
-    'ngInject'
-    data = [
+class WebDevTec extends Service
+  constructor: () ->
+    @data = [
       {
         'title': 'AngularJS',
         'url': 'https://angularjs.org/',
@@ -71,8 +70,5 @@ angular.module 'app'
       }
     ]
 
-    getTec = ->
-      data
-
-    @getTec = getTec
-    return
+  getTec: () =>
+    @data

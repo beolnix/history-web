@@ -1,6 +1,5 @@
-angular.module 'app'
-  .config ($logProvider, toastrConfig) ->
-    'ngInject'
+class AppConfig extends Config
+  constructor: ($logProvider, toastrConfig) ->
     # Enable log
     $logProvider.debugEnabled true
     # Set options third-party lib
