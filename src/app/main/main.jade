@@ -11,5 +11,7 @@ div(class="container")
             li(class="active")
               a(ng-href="#") Chats
 
-    select
-      option(ng-repeat="chat in main.chats") {{chat.name}}
+    select( ng-model="selectedChatId"
+            ng-change="changeChat()"
+            ng-options="chat.id as chat.name for chat in main.chats")
+
