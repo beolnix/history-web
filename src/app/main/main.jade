@@ -15,3 +15,7 @@ div(class="container")
             ng-change="changeChat()"
             ng-options="chat.id as chat.name for chat in main.chats")
 
+    div(class="panel panel-default")
+      div(class="panel-body")
+        p(ng-repeat="message in main.messages")
+          | {{message.formatted}} {{message.author}} : {{message.msg}}

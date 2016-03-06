@@ -8,6 +8,11 @@ class States extends Config
         templateUrl: 'app/main/main.html'
         controller: 'mainController'
         controllerAs: 'main'
+      .state 'chat',
+        url: '/chat/:chatId'
+        templateUrl: 'app/main/main.html'
+        controller: 'mainController'
+        controllerAs: 'main'
 
 
 
