@@ -11,11 +11,25 @@ div(class="container")
             li(class="active")
               a(ng-href="#") Chats
 
-    select( ng-model="selectedChatId"
-            ng-change="changeChat()"
-            ng-options="chat.id as chat.name for chat in main.chats")
+    div(class="btn-group" uib-dropdown is-open="main.isopen")
+      button(type="button" class="btn btn-default")
+        | {{main.selectedChatName }}
+      button(id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled")
+        span(class="caret")
+        span(class="sr-only")
+          | Toggle Dropdown
+      ul(uib-dropdown-menu role="menu" aria-labelledby="single-button")
+        li(role="menuitem" ng-repeat="(id, chat) in main.chats")
+          a(ng-href="#/chat/{{chat.id}}")
+            | {{chat.name}}
+
+    p
 
     div(class="panel panel-default")
       div(class="panel-body")
         p(ng-repeat="message in main.messages")
           | {{message.formatted}} {{message.author}} : {{message.msg}}
+
+    div
+      button(ng-click="loadMore()" class="btn btn-default")
+        | load more
