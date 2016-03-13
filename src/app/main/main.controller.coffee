@@ -30,9 +30,7 @@ class Main extends Controller
   appendMessages:(data, responseHeaders) =>
     newMessages = data.content
     for message in newMessages
-      d = new Date(message.timestamp)
-      message.formatted = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
-          d.getHours() + ":" + d.getMinutes();
+      message.formatted = @getFormattedDate(message.timestamp)
     @messages = @messages.concat newMessages
 
   changeChat: () =>
@@ -45,9 +43,49 @@ class Main extends Controller
     if (data.content.length > 0)
       @messages = data.content
       for message in @messages
-        d = new Date(message.timestamp)
-        message.formatted = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
-          d.getHours() + ":" + d.getMinutes();
+        message.formatted = @getFormattedDate(message.timestamp)
+
+  selectMessage: (msgId, type, $event) =>
+    elem = $event.currentTarget
+    active = elem.getAttribute("class").indexOf("active") > -1
+    if active
+      newClassAttr = elem.getAttribute("class").replace("btn-default", "")
+      if "question" == type
+        newClassAttr = newClassAttr + " btn-warning"
+      else
+        newClassAttr = newClassAttr + " btn-primary"
+      elem.setAttribute("class", newClassAttr)
+    else
+      newClassAttr = elem.getAttribute("class")
+        .replace("btn-warning", "")
+        .replace("btn-primary", "") + " btn-default"
+      elem.setAttribute("class", newClassAttr)
+    @switchToDefault($event.currentTarget, type)
+
+  switchToDefault: (elem, type) =>
+    if "question" == type
+      def = elem.parentElement.children[1]
+      newClassAttr = def.getAttribute("class")
+        .replace("btn-warning", "")
+        .replace("btn-primary", "") + " btn-default"
+      def.setAttribute("class", newClassAttr)
+    else
+      def = elem.parentElement.children[0]
+      newClassAttr = def.getAttribute("class")
+        .replace("btn-warning", "")
+        .replace("btn-primary", "") + " btn-default"
+      def.setAttribute("class", newClassAttr)
+
+
+  removeMessage: (msgId, type) =>
+    #
+
+  addMessage: (msg, type) =>
+
+  getFormattedDate: (timestamp) ->
+    d = new Date(timestamp)
+    return d.getDate()  + "." + (d.getMonth()+1) + "." + d.getFullYear() + " " +
+      d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
 
     @$log.info @messages
     return
