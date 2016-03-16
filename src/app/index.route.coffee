@@ -3,16 +3,24 @@ class States extends Config
     $urlRouterProvider.otherwise '/'
 
     $stateProvider
-      .state 'home',
+      .state 'parent',
+        abstract: true
+        templateUrl: 'app/history/history.html'
+        controller: 'historyController'
+        controllerAs: 'history'
+      .state 'parent.home',
         url: '/'
-        templateUrl: 'app/main/main.html'
-        controller: 'mainController'
-        controllerAs: 'main'
-      .state 'chat',
-        url: '/chat/:chatId'
-        templateUrl: 'app/main/main.html'
-        controller: 'mainController'
-        controllerAs: 'main'
+        views:
+          chatView:
+            templateUrl: 'app/history/chat.html',
+            controller: 'chatController',
+            controllerAs: 'chatController'
+          noteView:
+            templateUrl: 'app/history/note.html',
+            controller: 'noteController',
+            controllerAs: 'noteController'
+
+
 
 
 

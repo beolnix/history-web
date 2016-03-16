@@ -1,0 +1,36 @@
+div(class="container")
+  div
+    nav(class="navbar navbar-static-top navbar-inverse")
+      div(class="container-fluid")
+        div(class="navbar-header")
+          a(class="navbar-brand" href="#")
+            span(class="glyphicon glyphicon-home")
+              |  History
+        div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-6")
+          ul(class="nav navbar-nav")
+            li(class="active")
+              a(ng-href="#") Chats
+
+    div(class="btn-group" uib-dropdown is-open="history.isopen")
+      button(type="button" class="btn btn-default")
+        | {{history.selectedChatName }}
+      button(id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled")
+        span(class="caret")
+        span(class="sr-only")
+          | Toggle Dropdown
+      ul(uib-dropdown-menu role="menu" aria-labelledby="single-button")
+        li(role="menuitem" ng-repeat="(id, chat) in history.chats")
+          a(ng-href="#/chat/{{chat.id}}")
+            | {{chat.name}}
+
+  p
+
+  div(ui-view="chatView")
+
+  div(ui-view="noteView")
+
+  div(class="clearfix")
+
+  div
+    button(ng-click="loadMore()" class="btn btn-default")
+      | load more
