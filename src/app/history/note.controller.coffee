@@ -1,5 +1,6 @@
 class Note extends Controller
   constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope, @$http) ->
+    @topic = ""
     @questions = []
     @answers = []
 
@@ -28,8 +29,18 @@ class Note extends Controller
       return @answers
 
   publish: () =>
+    if "" == @topic
+      @toastr.error("Topic must not be empty")
+      return
+    else if @questions.length == 0
+      @toastr.error("Select messages for question")
+      return
+    else if @answers.length == 0
+      @toastr.error("Select messages for answers")
+      return
+
     data = {
-      topic: "test"
+      topic: @topic
       question: @questions
       answer: @answers
     }
@@ -42,6 +53,7 @@ class Note extends Controller
     @toastr.info("note has been successfully published")
     @answers = []
     @questions = []
+    @topic = ""
 
   failurePublish: (response) =>
     @toastr.error("note hasn't been published: " + response.body.toString())
