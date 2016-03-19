@@ -42,14 +42,17 @@ class Chat extends Controller
       else
         newClassAttr = newClassAttr + " btn-primary"
       elem.setAttribute("class", newClassAttr)
+      @addMessage(msg, type)
+      @removeMessage(msg, @oppositeType(type))
     else
       newClassAttr = elem.getAttribute("class")
         .replace("btn-warning", "")
         .replace("btn-primary", "") + " btn-default"
       elem.setAttribute("class", newClassAttr)
+      @removeMessage(msg, type)
     @switchToDefault($event.currentTarget, type)
-    @addMessage(msg, type)
-    @removeMessage(msg, @oppositeType(type))
+
+
 
   switchToDefault: (elem, type) =>
     if "question" == type
@@ -64,6 +67,7 @@ class Chat extends Controller
         .replace("btn-warning", "")
         .replace("btn-primary", "") + " btn-default"
       def.setAttribute("class", newClassAttr)
+
 
   oppositeType: (type) =>
     if "question" == type
