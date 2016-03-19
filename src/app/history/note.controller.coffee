@@ -1,5 +1,5 @@
 class Note extends Controller
-  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope) ->
+  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope, @$http) ->
     @questions = []
     @answers = []
 
@@ -27,8 +27,24 @@ class Note extends Controller
     else
       return @answers
 
-  removeMsgFromCollection: (msg, collection) =>
+  publish: () =>
+    data = {
+      topic: "test"
+      question: @questions
+      answer: @answers
+    }
 
+    @$http.post('/api/v1/notes', data, {})
+      .then(@successPublish,
+            @failurePublish)
+
+  successPublish: (response) =>
+    @toastr.info("note has been successfully published")
+    @answers = []
+    @questions = []
+
+  failurePublish: (response) =>
+    @toastr.error("note hasn't been published: " + response.body.toString())
 
 
 

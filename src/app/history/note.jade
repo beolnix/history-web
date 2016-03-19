@@ -12,3 +12,6 @@ div(class="panel panel-default col-md-4")
           td(class="col-md-1") {{msg.formatted}}
           td(class="col-md-2") {{msg.author}}
           td(class="col-md-5") {{msg.msg}}
+
+    button(class="btn btn-default" ng-click="noteController.publish()")
+      | publish
