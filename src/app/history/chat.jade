@@ -8,14 +8,10 @@ div
           td(class="col-md-5") {{message.msg}}
           td(class="col-md-3")
             div(class="btn-group")
-              label(class="btn btn-default" ng-model="radioModel" uib-btn-radio="'{{message.id}}Q'" ng-click="chatController.selectMessage(message.id, 'question', $event)" uncheckable)
+              label(class="btn btn-default" ng-model="radioModel" uib-btn-radio="'{{message.id}}Q'" ng-click="chatController.selectMessage(message, 'question', $event)" uncheckable)
                 | Q
-              label(class="btn btn-default" ng-model="radioModel" uib-btn-radio="'{{message.id}}A'" ng-click="chatController.selectMessage(message.id, 'answer', $event)" uncheckable)
+              label(class="btn btn-default" ng-model="radioModel" uib-btn-radio="'{{message.id}}A'" ng-click="chatController.selectMessage(message, 'answer', $event)" uncheckable)
                 | A
 
-  div(class="clearfix")
 
-  div
-    button(ng-click="loadMore()" class="btn btn-default")
-      | load more
 

@@ -1,5 +1,5 @@
 class History extends Controller
-  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state) ->
+  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope) ->
     @chats = @Chat.query(@updateSelectedChat)
     @selectedChatName = 'Select chat...'
     @$scope.selectedChatId = null
@@ -16,6 +16,9 @@ class History extends Controller
       if (selectedChat?)
         @selectedChat = selectedChat
         @selectedChatName = @selectedChat.name
+
+  loadMore:() =>
+    @$rootScope.$emit('history.loadMore')
 
 
 

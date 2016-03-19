@@ -25,8 +25,15 @@ div(class="container")
 
   p
 
-  div(ui-view="noteView")
+  div(class="panel")
+      div(ui-view="chatView")
+      div(class="col-md-1")
+      div(ui-view="noteView")
 
-  div(ui-view="chatView")
+  div(class="clearfix")
+
+  div
+    button(ng-click="history.loadMore()" class="btn btn-default")
+      | load more
 
 

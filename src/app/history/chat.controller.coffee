@@ -1,5 +1,7 @@
 class Chat extends Controller
-  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state) ->
+  constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope) ->
+    @messages = []
+    @$rootScope.$on('history.loadMore', @loadMore)
     @updateMessages()
 
   updateMessages: () =>
@@ -29,7 +31,8 @@ class Chat extends Controller
     @messages = @messages.concat newMessages
 
 
-  selectMessage: (msgId, type, $event) =>
+  selectMessage: (msg, type, $event) =>
+    msgId = msg.id
     elem = $event.currentTarget
     active = elem.getAttribute("class").indexOf("active") > -1
     if active
@@ -45,8 +48,8 @@ class Chat extends Controller
         .replace("btn-primary", "") + " btn-default"
       elem.setAttribute("class", newClassAttr)
     @switchToDefault($event.currentTarget, type)
-    @addMessage(msgId, type)
-    @removeMessage(msgId, @oppositeType(type))
+    @addMessage(msg, type)
+    @removeMessage(msg, @oppositeType(type))
 
   switchToDefault: (elem, type) =>
     if "question" == type
@@ -68,10 +71,17 @@ class Chat extends Controller
     else
       return "question"
 
-  removeMessage: (msgId, type) =>
-#
+  removeMessage: (msg, type) =>
+    @$rootScope.$emit('chat.removeMessageFromNote', {
+      msg: msg
+      type: type
+    })
 
   addMessage: (msg, type) =>
+    @$rootScope.$emit('chat.addMessageToNote', {
+      msg: msg
+      type: type
+    })
 
   getFormattedDate: (timestamp) ->
     d = new Date(timestamp)
