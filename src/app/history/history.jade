@@ -20,17 +20,13 @@ div(class="container")
           | Toggle Dropdown
       ul(uib-dropdown-menu role="menu" aria-labelledby="single-button")
         li(role="menuitem" ng-repeat="(id, chat) in history.chats")
-          a(ng-href="#/chat/{{chat.id}}")
+          a(ui-sref="parent.chat({ chatId: '{{chat.id}}' })")
             | {{chat.name}}
 
   p
 
-  div(ui-view="chatView")
-
   div(ui-view="noteView")
 
-  div(class="clearfix")
+  div(ui-view="chatView")
 
-  div
-    button(ng-click="loadMore()" class="btn btn-default")
-      | load more
+

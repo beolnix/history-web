@@ -10,6 +10,7 @@ class States extends Config
         controllerAs: 'history'
       .state 'parent.home',
         url: '/'
+        parent: 'parent'
         views:
           chatView:
             templateUrl: 'app/history/chat.html',
@@ -19,6 +20,18 @@ class States extends Config
             templateUrl: 'app/history/note.html',
             controller: 'noteController',
             controllerAs: 'noteController'
+    .state 'parent.chat',
+      url: '/chat/:chatId'
+      parent: 'parent'
+      views:
+        chatView:
+          templateUrl: 'app/history/chat.html',
+          controller: 'chatController',
+          controllerAs: 'chatController'
+        noteView:
+          templateUrl: 'app/history/note.html',
+          controller: 'noteController',
+          controllerAs: 'noteController'
 
 
 
