@@ -54,6 +54,7 @@ class Note extends Controller
     @answers = []
     @questions = []
     @topic = ""
+    @$rootScope.$emit('history.note.reloadMessages')
 
   failurePublish: (response) =>
     @toastr.error("note hasn't been published: " + response.body.toString())

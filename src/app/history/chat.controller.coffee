@@ -2,6 +2,7 @@ class Chat extends Controller
   constructor: ($timeout, @toastr, @Chat, @Message, @$scope, @$log, @$state, @$rootScope) ->
     @messages = []
     @$rootScope.$on('history.loadMore', @loadMore)
+    @$rootScope.$on('history.note.reloadMessages', @updateMessages)
     @updateMessages()
 
   updateMessages: () =>
